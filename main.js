@@ -11,8 +11,8 @@ const rateLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   keyGenerator: (req, res)=>{
-    console.log(res.ip, req.path)
-    return req.ip, req.path
+    console.log(req.ip, req.path)
+    return req.ip + req.path
   }
  });
 
