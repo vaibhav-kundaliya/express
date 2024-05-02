@@ -10,6 +10,10 @@ const rateLimiter = rateLimit({
   },
   standardHeaders: true,
   legacyHeaders: false,
+  keyGenerator: (req, res)=>{
+    console.log(res.ip, req.path)
+    return req.ip, req.path
+  }
  });
 
 app = express()
@@ -22,7 +26,7 @@ app.get("/", rateLimiter, (req, res)=>{
 
 app.get("/api2", rateLimiter, (req, res)=>{
     console.log("Hello world 2");
-    res.send("Hellooooo")
+    res.send("Hellooooo 2")
 })
 
 
