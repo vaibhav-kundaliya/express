@@ -2,7 +2,7 @@ const express = require("express")
 const rateLimit = require('express-rate-limit');
 
 const rateLimiter = rateLimit({
-  windowMs:   30 * 1000, // 10 sec in milliseconds
+  windowMs:   20 * 1000, // 10 sec in milliseconds
   max: 1, // 1 request
   message: {
     status: "error",
@@ -17,6 +17,11 @@ app = express()
 
 app.get("/", rateLimiter, (req, res)=>{
     console.log("Hello world");
+    res.send("Hellooooo")
+})
+
+app.get("/api2", rateLimiter, (req, res)=>{
+    console.log("Hello world 2");
     res.send("Hellooooo")
 })
 
