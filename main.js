@@ -1,5 +1,6 @@
 const express = require("express")
 const rateLimit = require('express-rate-limit');
+const requestIp = require('request-ip');
 
 const rateLimiter = rateLimit({
   windowMs:   20 * 1000, // 10 sec in milliseconds
@@ -11,8 +12,8 @@ const rateLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   keyGenerator: (req, res)=>{
-    console.log(req.ip, req.path)
-    return req.ip + req.path
+    console.log(requestIp.getClientIp(req), req.path)
+    return requestIp.getClientIp(req) + req.path
   }
  });
 
